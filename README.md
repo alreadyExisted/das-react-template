@@ -1,4 +1,4 @@
-# DSA React Template
+# React Template for DAS CLI
 
 Template for [Deno App Starter CLI](https://github.com/alreadyExisted/deno_app_setuper)
 
