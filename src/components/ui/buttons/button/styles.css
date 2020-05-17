@@ -1,0 +1,18 @@
+.btn {
+  min-width: 170px;
+  height: 40px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  text-transform: none;
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+.outlined {
+  border-width: 2px;
+
+  &:hover {
+    border-width: 2px;
+  }
+}

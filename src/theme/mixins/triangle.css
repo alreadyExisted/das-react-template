@@ -1,0 +1,8 @@
+@define-mixin triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  content: '';
+}

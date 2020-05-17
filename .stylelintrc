@@ -1,0 +1,42 @@
+{
+  "plugins": ["stylelint-order"],
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-concentric-order",
+    "stylelint-config-prettier"
+  ],
+  "rules": {
+    "order/order": ["custom-properties", "declarations"],
+    "order/properties-order": ["composes", "mixin"],
+    "no-missing-end-of-source-newline": null,
+    "selector-type-no-unknown": null,
+    "number-leading-zero": null,
+    "font-family-no-missing-generic-family-keyword": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ],
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "value",
+          "mixin",
+          "define-mixin",
+          "mixin-content",
+          "svg-load"
+        ]
+      }
+    ],
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": ["composes"]
+      }
+    ],
+    "function-name-case": null
+  }
+}
+

@@ -1,0 +1,25 @@
+@define-mixin field {
+  margin: 0 0 var(--primary-offset);
+}
+
+@define-mixin input-text {
+  font-size: 16px;
+  line-height: 28px;
+}
+
+@define-mixin input {
+  height: 28px;
+  padding-top: 4px;
+  padding-left: 12px;
+  padding-bottom: 4px;
+  border: 1px solid #d5d6d8;
+  border-radius: 3px;
+
+  @mixin input-text;
+}
+
+@define-mixin label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 16px;
+}

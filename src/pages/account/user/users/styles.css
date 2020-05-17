@@ -1,0 +1,11 @@
+.imgWrap {
+  max-width: 24px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  & img {
+    display: flex;
+    max-width: 100%;
+    height: auto;
+  }
+}

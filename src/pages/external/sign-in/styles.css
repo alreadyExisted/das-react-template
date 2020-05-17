@@ -1,0 +1,16 @@
+.card {
+  max-width: 340px;
+  width: 100%;
+}
+
+.title {
+  font-size: 20px;
+  text-transform: uppercase;
+  margin: 0 0 var(--primary-offset);
+  color: var(--primary-text-color);
+  text-align: center;
+}
+
+.submit {
+  text-align: center;
+}

@@ -1,0 +1,8 @@
+:root {
+  --primary-bg-color: #f2f4f7;
+  --primary-text-color: #646777;
+  --secondary-bg-color: #fff;
+  --primary-offset: 24px;
+  --primary-bdr-color: #eff1f5;
+  --primary-bsh: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
+}

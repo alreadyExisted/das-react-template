@@ -1,0 +1,27 @@
+.list {
+  @mixin reset-list;
+
+  display: flex;
+}
+
+.item {
+  display: block;
+
+  &:not(:last-child) {
+    margin-right: 32px;
+  }
+}
+
+.link {
+  position: relative;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: var(--primary-text-color);
+  text-decoration: none;
+
+  &.active {
+    color: rgb(76, 225, 182);
+  }
+}

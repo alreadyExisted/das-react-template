@@ -1,0 +1,12 @@
+{
+  "common.navs.profile": "Profile",
+  "common.navs.users": "Users",
+  "common.navs.repositories": "Repositories",
+  "common.navs.log-out": "Log out",
+
+  "common.table.id": "ID",
+  "common.table.avatar": "Avatar",
+  "common.table.name": "Name",
+  "common.table.description": "Description",
+  "common.table.link": "Link"
+}

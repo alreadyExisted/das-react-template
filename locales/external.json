@@ -1,0 +1,12 @@
+{
+  "pages.sign-in.title": "React Template Dashboard",
+  "pages.sign-in.email": "Email",
+  "pages.sign-in.email!required": "Please enter your Email",
+  "pages.sign-in.password": "Password",
+  "pages.sign-in.password!required": "Please enter your Password",
+  "pages.sign-in.role": "Role",
+  "pages.sign-in.role.user": "User",
+  "pages.sign-in.role.admin": "Admin",
+  "pages.sign-in.role!required": "Please enter your rRle",
+  "pages.sign-in.submit": "Login"
+}

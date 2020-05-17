@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  flex-shrink: 0;
+  height: 60px;
+  background: var(--secondary-bg-color);
+  box-shadow: var(--primary-bsh);
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: 'Molle', cursive;
+  font-size: 24px;
+  color: rgb(76, 225, 182);
+}

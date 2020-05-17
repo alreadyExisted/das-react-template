@@ -1,0 +1,12 @@
+.field {
+  @mixin field;
+}
+
+.input {
+  @mixin input;
+}
+
+.error {
+  margin-left: 0;
+  margin-right: 0;
+}

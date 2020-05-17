@@ -1,0 +1,13 @@
+.select {
+  @mixin field;
+}
+
+.input {
+  @mixin input;
+}
+
+.item[aria-disabled='true'],
+.placeholder {
+  font-style: italic;
+  color: #ababab;
+}

@@ -1,0 +1,28 @@
+.loader {
+  position: relative;
+  min-height: 10rem;
+}
+
+.inline {
+  display: inline-block;
+  min-height: initial;
+}
+
+.component {
+  transition: opacity 0.15s;
+}
+
+.isLoading {
+  & .component {
+    opacity: 0.5;
+    user-select: none;
+    pointer-events: none;
+  }
+}
+
+.spinner {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}

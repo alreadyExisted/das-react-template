@@ -1,0 +1,26 @@
+<html>
+
+<head>
+  <meta charSet="utf-8" />
+  <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Molle:ital@1&display=swap" rel="stylesheet">
+  <title>React Dashboard Template</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <% if (dev) { %>
+    <script>
+      var config = {
+        api: {
+          github: 'https://api.github.com'
+        }
+      }
+  </script>
+  <% } else { %>  
+    <script src="/config.js"></script>
+  <% } %>
+</body>
+
+</html>

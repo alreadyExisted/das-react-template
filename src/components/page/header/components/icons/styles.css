@@ -1,0 +1,15 @@
+.wrap {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  @mixin bg-image;
+
+  width: 32px;
+  height: 32px;
+}
+
+.avatar {
+  background-image: svg-load('./images/avatar.svg');
+}

@@ -1,0 +1,10 @@
+.layout {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.container {
+  padding-top: var(--primary-offset);
+  padding-bottom: var(--primary-offset);
+  @mixin container;
+}
