@@ -1,9 +1,9 @@
 import { getIn, FormikProps, FieldInputProps } from 'formik'
 import { useMemo } from 'react'
-import { PrimitiveType } from 'intl-messageformat'
 import { camelCase2Dash } from '@app/utils/format'
+import { TProps } from '@app/components/t'
 
-type ErrorTextIdType = 'string' | { rid: string; values?: PrimitiveType } | undefined
+type ErrorTextIdType = 'string' | { rid: string; values?: TProps['values'] } | undefined
 
 export function useErrorTextProps<F, I>(form: FormikProps<F>, field: FieldInputProps<I>) {
   return useMemo(() => {
