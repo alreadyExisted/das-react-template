@@ -17,7 +17,7 @@ export const loadingSetter = {
 /**
  * @returns loading togglers in reducer with safeSaga
  */
-export function getLoadingStateHandlers<S = {}, A = PayloadAction<any>>(
+export function getLoadingStateHandlers<S = unknown, A = PayloadAction<any>>(
   actionTypes: {
     actionType: string
     loadingKey?: string

@@ -29,7 +29,6 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react-hooks'],
 
   extends: [
-    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'prettier',
@@ -41,10 +40,21 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars-experimental': ['error', { ignoredNamesRegex: '^_' }],
     '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/interface-name-prefix': 'error',
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'interface',
+        format: ['PascalCase'],
+        custom: {
+          regex: '^I[A-Z]',
+          match: false
+        }
+      }
+    ],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/no-children-prop': 'off',
     'react/display-name': 'off',

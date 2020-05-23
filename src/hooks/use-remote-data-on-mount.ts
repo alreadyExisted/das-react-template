@@ -58,6 +58,7 @@ export function useRemoteDataOnMount<T>(
     return () => {
       didCancel = true
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps)
 
   return state

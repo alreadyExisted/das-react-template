@@ -2,7 +2,7 @@ import { getIn, FormikProps, FieldInputProps } from 'formik'
 import { useMemo } from 'react'
 import { camelCase2Dash } from '@app/utils/format'
 
-type ErrorTextIdType = 'string' | { rid: string; values?: {} } | undefined
+type ErrorTextIdType = 'string' | { rid: string; values?: unknown } | undefined
 
 export function useErrorTextProps<F, I>(form: FormikProps<F>, field: FieldInputProps<I>) {
   return useMemo(() => {

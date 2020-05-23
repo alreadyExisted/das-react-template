@@ -30,8 +30,8 @@ export function Toasters() {
   )
 }
 
-function stringify(value: string | { id: string } | object) {
+function stringify(value: string | { id: string } | Record<string, unknown>) {
   if (!value || typeof value === 'string') return value
-  if ('id' in value) return <T id={value.id} />
+  if ('id' in value) return <T id={value.id as string} />
   return JSON.stringify(value)
 }
