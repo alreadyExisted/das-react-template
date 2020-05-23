@@ -122,7 +122,7 @@ const config = {
 
     new MiniCssExtractPlugin(),
 
-    new CopyPlugin([{ from: 'locales', to: 'locales' }]),
+    new CopyPlugin({ patterns: [{ from: 'locales', to: 'locales' }] }),
 
     new Html({
       template: 'views/index.html',
