@@ -29,12 +29,12 @@ export function removeUserData() {
   localStorage.removeItem(ROLE_KEY)
 }
 
-export function login(data: UserData) {
+export function doLogin(data: UserData) {
   setUserData(data)
   window.location.assign('/account')
 }
 
-export function logout() {
+export function doLogout() {
   removeUserData()
   window.location.assign('/')
 }

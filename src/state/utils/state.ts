@@ -1,33 +1,21 @@
 import { PayloadAction } from '@reduxjs/toolkit'
-import { put } from 'redux-saga/effects'
-import { eventsActions } from '@app/state/modules/events/actions'
-import { ApiError } from '@app/api/errors'
-import { createEvent } from '@app/utils/events'
 
-export function safeSaga<T extends PayloadAction<any>>(saga: (action: T) => Generator) {
-  return function* (action: T) {
-    try {
-      yield put({ type: `${action.type}_START`, payload: action.payload })
-      yield* saga(action)
-    } catch (error) {
-      // log errors
-      console.error(error)
-
-      if (error instanceof ApiError) {
-        yield put(eventsActions.addEvent(createEvent({ type: 'error', message: error.opts.message, error })))
-      }
-    } finally {
-      yield put({ type: `${action.type}_END`, payload: action.payload })
-    }
+// TODO add generics
+export const loadingSetter = {
+  start: (fieldName = 'loading') => (state: any) => {
+    state[fieldName] = true
+  },
+  success: (loadingFieldName = 'loading', dataFieldName = 'data') => (state: any, action: { payload: any }) => {
+    state[loadingFieldName] = false
+    state[dataFieldName] = action.payload
+  },
+  end: (fieldName = 'loading') => (state: any) => {
+    state[fieldName] = false
   }
 }
 
-export function actionWithPayloadType<T>() {
-  return (t: T) => ({ payload: t })
-}
-
 /**
- * @returns loading togglers in reducer
+ * @returns loading togglers in reducer with safeSaga
  */
 export function getLoadingStateHandlers<S = {}, A = PayloadAction<any>>(
   actionTypes: {

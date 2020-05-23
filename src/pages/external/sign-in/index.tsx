@@ -6,19 +6,19 @@ import { useT } from '@app/hooks/use-t'
 import { UiCard } from '@app/components/ui/card'
 import { UiButton } from '@app/components/ui/buttons/button'
 import { TextFormField } from '@app/components/ui/form/text-field'
-import { authActions } from '@app/state/modules/auth/actions'
+import { userActions } from '@app/state/modules/user'
 import { FormWrapper } from '@app/components/ui/form'
 import { Loader } from '@app/components/ui/loader'
 import { useShallowEqualSelector } from '@app/hooks/store/use-shallow-equal-selector'
-import styles from './styles.css'
 import { SelectFormField } from '@app/components/ui/form/select-field'
 import { SelectFieldsItems } from '@app/components/ui/fields/selects/select'
+import styles from './styles.css'
 
 const NS = 'pages.sign-in'
 
 export function SignInPage() {
   const t = useT(NS)
-  const { loading } = useShallowEqualSelector(state => ({ loading: state.auth.loading }))
+  const loading = useShallowEqualSelector(state => state.user.loading)
   const dispatch = useDispatch()
   const roleItems = useMemo<SelectFieldsItems>(
     () => [
@@ -29,7 +29,7 @@ export function SignInPage() {
   )
   const handleSubmit = useCallback(
     (values: AuthUserData) => {
-      dispatch(authActions.loginRequest(values))
+      dispatch(userActions.login(values))
     },
     [dispatch]
   )

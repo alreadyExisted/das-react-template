@@ -3,16 +3,17 @@ import { Toaster } from '@app/components/ui/toaster'
 import { Alert } from '@app/components/ui/alert'
 import { useCallback, SyntheticEvent } from 'react'
 import { useDispatch } from 'react-redux'
-import { eventsActions } from '@app/state/modules/events/actions'
+import { eventsActions } from '@app/state/modules/events'
+import { eventsSelector } from '@app/state/modules/events/selectors'
 import { T } from '@app/components/t'
 
 export function Toasters() {
-  const events = useShallowEqualSelector(state => state.events)
+  const events = useShallowEqualSelector(eventsSelector)
   const dispatch = useDispatch()
   const handleClose = useCallback(
-    (id: string) => (_?: SyntheticEvent, reason?: string) => {
+    (id: string) => (_: SyntheticEvent, reason?: string) => {
       if (reason === 'clickaway') return
-      dispatch(eventsActions.removeEvent({ id }))
+      dispatch(eventsActions.removeEvent(id))
     },
     [dispatch]
   )

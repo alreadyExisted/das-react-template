@@ -4,7 +4,7 @@ import { useHistory, useRouteMatch } from 'react-router-dom'
 import Menu, { MenuProps } from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import { useT } from '@app/hooks/use-t'
-import { authActions } from '@app/state/modules/auth/actions'
+import { userActions } from '@app/state/modules/user'
 import cn from 'classnames'
 import styles from './styles.css'
 
@@ -29,7 +29,7 @@ export function HeaderProfileMenu({ items, anchorEl, setAnchorEl }: Props) {
     },
     [history, path, handleClose]
   )
-  const handleLogout = useCallback(() => dispatch(authActions.logoutRequest()), [])
+  const handleLogout = useCallback(() => dispatch(userActions.logout()), [dispatch])
   return (
     <Menu
       PaperProps={paperProps}

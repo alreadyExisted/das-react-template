@@ -5,7 +5,11 @@ export function AdminPages() {
   return (
     <UiCard style={{ textAlign: 'center', fontSize: 24 }}>
       <div>
-        Click on the star {'=>'} <UiLink href="https://github.com/alreadyExisted/das-react-template">Repo</UiLink> 😁
+        Click on the star {'=>'}{' '}
+        <UiLink href="https://github.com/alreadyExisted/das-react-template" rel="noopener noreferrer" target="_blank">
+          Repo
+        </UiLink>{' '}
+        😁
       </div>
     </UiCard>
   )
