@@ -17,7 +17,7 @@ export function TextInput({ className, label, inputProps, value: fieldValue, onC
       ...inputProps,
       className: cn(inputProps?.className, styles.input)
     }
-  }, [inputProps, inputProps?.className])
+  }, [inputProps])
   return (
     <>
       <Label>{label}</Label>

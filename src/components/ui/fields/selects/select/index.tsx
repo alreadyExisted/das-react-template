@@ -39,7 +39,7 @@ export function SelectField({
       ...inputProps,
       className: cn(styles.input, props.displayEmpty && !value && styles.placeholder, inputProps?.className)
     }
-  }, [inputProps, inputProps?.className, props.displayEmpty, value])
+  }, [inputProps, props.displayEmpty, value])
   const _children = useMemo(() => {
     return items
       ? items.map(item => (
