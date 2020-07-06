@@ -9,7 +9,7 @@ Template for [Deno App Starter CLI](https://github.com/alreadyExisted/deno_app_s
 - Styles (Css Modules + PostCSS)
 - Routing (React Router)
 - Localization (React Intl)
-- State management (Redux Saga + Redux Toolkit)
+- State management (Redux Toolkit)
 - UI Componenst (Material UI)
 - Form (Formik)
 - Requests (Axios)
