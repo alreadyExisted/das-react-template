@@ -7,7 +7,7 @@ import styles from './styles.css'
 
 export default function ExternalPages() {
   return (
-    <Bootstrap isExternal>
+    <Bootstrap localeNamespaces={['external']}>
       <Container className={styles.layout}>
         <SwitchWrapper>
           <Route exact path="/" component={SignInPage} />

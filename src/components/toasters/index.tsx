@@ -7,6 +7,8 @@ import { eventsActions } from '@app/state/modules/events'
 import { eventsSelector } from '@app/state/modules/events/selectors'
 import { T } from '@app/components/t'
 
+const AUTO_HIDE_DURATION = 6000
+
 export function Toasters() {
   const events = useShallowEqualSelector(eventsSelector)
   const dispatch = useDispatch()
@@ -20,7 +22,7 @@ export function Toasters() {
   return (
     <>
       {events.map((item, index) => (
-        <Toaster key={index} open autoHideDuration={6000} onClose={handleClose(item.id)}>
+        <Toaster key={index} open autoHideDuration={AUTO_HIDE_DURATION} onClose={handleClose(item.id)}>
           <Alert onClose={handleClose(item.id)} severity={item.type}>
             {stringify(item.message)}
           </Alert>

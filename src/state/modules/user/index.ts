@@ -1,17 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { UserData, AuthUserData } from '@app/models/user'
+import { UserData, AuthUserData, AccountUserData } from '@app/models/user'
 import { getUserData, doLogin, doLogout } from '@app/utils/features/auth'
 import { appConfig } from '@app/config'
 import { LoadingState } from '@app/state/interfaces'
 import { api } from '@app/api'
 import { loadingSetter, createSafeThunk } from '@app/state/utils'
 
-const { sessionToken, accountId, locale, role } = getUserData()
+const { locale, role } = getUserData()
 
-const initialState: { data: UserData } & LoadingState = {
-  data: {
-    sessionToken,
-    accountId,
+const initialState: { common: UserData; account?: AccountUserData } & LoadingState = {
+  common: {
     locale: locale || appConfig.defaultLang,
     role: role || appConfig.defaultRole
   }
@@ -27,6 +25,8 @@ const logout = createSafeThunk('user/logout', async () => {
   doLogout()
 })
 
+const getUserInfo = createSafeThunk('user/getUserInfo', api.main.user.getUserInfo)
+
 const slice = createSlice({
   name: 'user',
   initialState,
@@ -39,11 +39,15 @@ const slice = createSlice({
       .addCase(logout.pending, loadingSetter.start())
       .addCase(logout.fulfilled, loadingSetter.end())
       .addCase(logout.rejected, loadingSetter.end())
+      .addCase(getUserInfo.pending, loadingSetter.start())
+      .addCase(getUserInfo.fulfilled, loadingSetter.success('loading', 'account'))
+      .addCase(getUserInfo.rejected, loadingSetter.end())
 })
 
 export const userActions = {
   login,
-  logout
+  logout,
+  getUserInfo
 }
 
 export default slice.reducer

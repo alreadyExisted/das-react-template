@@ -4,7 +4,7 @@ import { Container } from '@app/components/page/container'
 import { HeaderMenu } from '@app/components/page/header/components/menu'
 import { HeaderIcons } from '@app/components/page/header/components/icons'
 import styles from './styles.css'
-import { useUserData } from '@app/hooks/store/use-user-data'
+import { useUserData } from '@app/hooks/features/use-user-data'
 
 export function Header() {
   const { role } = useUserData()

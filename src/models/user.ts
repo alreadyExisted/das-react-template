@@ -15,3 +15,10 @@ export interface UserData {
   locale: string
   role: RoleType
 }
+
+export interface AccountUserData {
+  email: string
+  firstName: string
+  lastName: string
+  nickname: string
+}

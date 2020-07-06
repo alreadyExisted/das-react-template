@@ -1,14 +1,10 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import createSagaMiddleware from 'redux-saga'
+import { configureStore } from '@reduxjs/toolkit'
 import rootReducer from './reducers'
-import rootSaga from './sagas'
-
-const sagaMiddleware = createSagaMiddleware()
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: [...getDefaultMiddleware(), sagaMiddleware],
-  devTools: true
+  middleware: getDefaultMiddleware => getDefaultMiddleware(),
+  devTools: process.env.NODE_ENV !== 'production' && {
+    stateSanitizer: state => ({ ...state, locales: 'HIDDEN' })
+  }
 })
-
-sagaMiddleware.run(rootSaga)
