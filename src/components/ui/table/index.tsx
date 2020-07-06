@@ -6,6 +6,7 @@ import TableCell, { TableCellProps } from '@material-ui/core/TableCell'
 import TableBody from '@material-ui/core/TableBody'
 import { UiCard } from '@app/components/ui/card'
 import { ReactNode, useMemo } from 'react'
+import styles from './styles.css'
 
 export interface UiTableProps {
   columns: {
@@ -31,7 +32,7 @@ export function UiTable({ columns }: UiTableProps) {
     [columns]
   )
   return (
-    <TableContainer component={UiCard}>
+    <TableContainer className={styles.wrap} component={UiCard}>
       <Table aria-label="table">
         <TableHead>
           <TableRow>{thItems}</TableRow>
