@@ -117,7 +117,16 @@ const config = {
 
   plugins: [
     new ForkTsCheckerPlugin({
-      tsconfig: TS_CONFIG
+      eslint: {
+        enabled: true,
+        files: './src/**/*.{ts,tsx,js,jsx}'
+      },
+      typescript: {
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true
+        }
+      }
     }),
 
     new MiniCssExtractPlugin(),

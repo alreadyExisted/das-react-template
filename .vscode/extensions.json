@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "stylelint.vscode-stylelint",
+    "eamodio.gitlens",
+    "eamodio.tsl-problem-matcher",
+    "cpylua.language-postcss"    
+  ]
+}
