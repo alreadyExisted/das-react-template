@@ -30,7 +30,8 @@ const config = {
     path: path.resolve(__dirname, './dist'),
     filename: IS_DEV ? '[name].js' : '[name].[contenthash:8].js',
     chunkFilename: IS_DEV ? '[name].chunk.js' : '[name].[contenthash:8].chunk.js',
-    publicPath: '/'
+    publicPath: '/',
+    pathinfo: false
   },
 
   resolve: {
