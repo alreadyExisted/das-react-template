@@ -1,36 +1,21 @@
-import { createSlice, EntityState, createEntityAdapter } from '@reduxjs/toolkit'
-import { LoadingState } from '@app/state/interfaces'
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit'
 import { api } from '@app/api'
-import { loadingSetter, createSafeThunk } from '@app/state/utils'
+import { createSafeThunk } from '@app/state/utils'
 import { GithubRepositoryData } from '@app/models/github-repository'
 
 const repositoriesAdapter = createEntityAdapter<GithubRepositoryData>()
 
-const initialState: EntityState<GithubRepositoryData> & LoadingState = {
-  ...repositoriesAdapter.getInitialState()
-}
-
-const getRepositories = createSafeThunk('repositories/getUsers', async () => {
-  const data = await api.github.repositories.getRepositories()
-  return data
-})
+const getItems = createSafeThunk('repositories/getItems', api.github.repositories.getItems)
 
 const slice = createSlice({
   name: 'repositories',
-  initialState,
+  initialState: repositoriesAdapter.getInitialState(),
   reducers: {},
-  extraReducers: builder =>
-    builder
-      .addCase(getRepositories.pending, loadingSetter.start())
-      .addCase(getRepositories.fulfilled, (s, a) => {
-        s.loading = false
-        repositoriesAdapter.addMany(s, a.payload!)
-      })
-      .addCase(getRepositories.rejected, loadingSetter.end())
+  extraReducers: builder => builder.addCase(getItems.fulfilled, repositoriesAdapter.addMany)
 })
 
 export const repositoriesActions = {
-  getRepositories
+  getItems
 }
 
 export default slice.reducer

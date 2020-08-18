@@ -1,18 +1,20 @@
 import { getIn, FormikProps, FieldInputProps } from 'formik'
 import { useMemo } from 'react'
-import { camelCase2Dash } from '@app/utils/format'
-import { TProps } from '@app/components/t'
+import { camelCaseToKebabCase } from '@app/utils/format'
+import { TProps, T } from '@app/components/t'
 
 type ErrorTextIdType = 'string' | { rid: string; values?: TProps['values'] } | undefined
 
-export function useErrorTextProps<F, I>(form: FormikProps<F>, field: FieldInputProps<I>) {
-  return useMemo(() => {
+export function useFormFieldErrorProps<F, I>(form: FormikProps<F>, field: FieldInputProps<I>) {
+  const errorTextProps = useMemo(() => {
     const errorTextProps: ErrorTextIdType = getIn(form.touched, field.name) && getIn(form.errors, field.name)
     if (!errorTextProps) return errorTextProps
     const props = typeof errorTextProps === 'string' ? { rid: errorTextProps } : errorTextProps
     return {
       ...props,
-      id: camelCase2Dash(props.rid)
+      id: camelCaseToKebabCase(props.rid),
     }
   }, [form.touched, form.errors, field.name])
+
+  return { helperText: errorTextProps && <T {...errorTextProps} />, error: !!errorTextProps }
 }

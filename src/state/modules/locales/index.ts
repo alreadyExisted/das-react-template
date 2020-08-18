@@ -1,9 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { LoadingState } from '@app/state/interfaces'
 import { api } from '@app/api'
-import { createSafeThunk, loadingSetter } from '@app/state/utils'
-
-const initialState: { data?: Record<string, string> } & LoadingState = {}
+import { createSafeThunk, fulfilledStateSetter } from '@app/state/utils'
 
 const getMessages = createSafeThunk('locales/getMessages', async (names: string[]) => {
   const data = await Promise.all(names.map(name => api.self.locales.getLocales(name)))
@@ -12,13 +9,9 @@ const getMessages = createSafeThunk('locales/getMessages', async (names: string[
 
 const slice = createSlice({
   name: 'locales',
-  initialState,
+  initialState: {} as { data?: Record<string, string> },
   reducers: {},
-  extraReducers: builder =>
-    builder
-      .addCase(getMessages.pending, loadingSetter.start())
-      .addCase(getMessages.fulfilled, loadingSetter.success())
-      .addCase(getMessages.rejected, loadingSetter.end())
+  extraReducers: builder => builder.addCase(getMessages.fulfilled, fulfilledStateSetter)
 })
 
 export const localesActions = {

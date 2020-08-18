@@ -3,7 +3,7 @@ import { GithubUserData } from '@app/models/github-user'
 
 export type GetGithubUsersResponseDTO = GithubUserData[]
 
-export const getUsers = () =>
+export const getItems = () =>
   githubHttpClient<GetGithubUsersResponseDTO>({
     url: '/users'
   })

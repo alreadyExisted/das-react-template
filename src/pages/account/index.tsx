@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react'
-import { Loader } from '@app/components/ui/loader'
+import { UiLoader } from '@app/components/ui/loader'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 const DynamicAccountPages = lazy(() => import('./dynamic'))
@@ -8,7 +8,7 @@ export function AccountPages() {
   return (
     <Switch>
       <Route path="/account">
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<UiLoader />}>
           <DynamicAccountPages />
         </Suspense>
       </Route>

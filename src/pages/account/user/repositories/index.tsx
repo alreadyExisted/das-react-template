@@ -5,16 +5,18 @@ import { useT } from '@app/hooks/use-t'
 import { repositoriesActions } from '@app/state/modules/repositories'
 import { repositoriesSelector } from '@app/state/modules/repositories/selectors'
 import { useShallowEqualSelector } from '@app/hooks/store/use-shallow-equal-selector'
-import { Loader } from '@app/components/ui/loader'
+import { UiLoader } from '@app/components/ui/loader'
 import { UiLink } from '@app/components/ui/link'
+import { useLoadingState } from '@app/hooks/store/use-loading-state'
 
 export function RepositoriesPages() {
   const t = useT('common.table')
   const dispatch = useDispatch()
-  const { loading, items } = useShallowEqualSelector(repositoriesSelector)
+  const items = useShallowEqualSelector(repositoriesSelector)
+  const loading = useLoadingState(repositoriesActions.getItems)
 
   useEffect(() => {
-    dispatch(repositoriesActions.getRepositories())
+    dispatch(repositoriesActions.getItems())
   }, [dispatch])
 
   const columns = useMemo<UiTableProps['columns']>(() => {
@@ -32,8 +34,8 @@ export function RepositoriesPages() {
   }, [t, items])
 
   return (
-    <Loader loading={loading}>
+    <UiLoader loading={loading}>
       <UiTable columns={columns} />
-    </Loader>
+    </UiLoader>
   )
 }

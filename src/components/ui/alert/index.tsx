@@ -1,7 +1,5 @@
-import _Alert, { AlertProps as _AlertProps } from '@material-ui/lab/Alert'
+import Alert, { AlertProps } from '@material-ui/lab/Alert'
 
-type AlertProps = _AlertProps
-
-export function Alert({ elevation = 6, variant = 'filled', ...props }: AlertProps) {
-  return <_Alert elevation={elevation} variant={variant} {...props} />
+export function UiAlert({ elevation = 6, variant = 'filled', ...props }: AlertProps) {
+  return <Alert elevation={elevation} variant={variant} {...props} />
 }

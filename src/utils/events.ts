@@ -1,4 +1,4 @@
 import { EventData } from '@app/models/events'
-import { getRandomHash } from '@app/utils/hash'
+import { nanoid } from '@reduxjs/toolkit'
 
-export const createEvent = (args: Omit<EventData, 'id'>) => ({ ...args, id: getRandomHash() })
+export const createEvent = (args: Omit<EventData, 'id'>) => ({ ...args, id: nanoid() })

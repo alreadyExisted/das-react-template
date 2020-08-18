@@ -6,7 +6,7 @@ import { GlobalHooksSetuper } from '@app/components/global-hooks'
 import { localesActions } from '@app/state/modules/locales'
 import { useShallowEqualSelector } from '@app/hooks/store/use-shallow-equal-selector'
 import { useUserData } from '@app/hooks/features/use-user-data'
-import { Loader } from '@app/components/ui/loader'
+import { UiLoader } from '@app/components/ui/loader'
 import { userActions } from '@app/state/modules/user'
 
 interface Props {
@@ -31,7 +31,7 @@ export function Bootstrap({ type = 'external', localeNamespaces, children }: Pro
     dispatch(localesActions.getMessages(localeNamespaces))
   }, [dispatch, localeNamespaces])
 
-  if ((type === 'account' && !userInfo) || !messages) return <Loader loading />
+  if ((type === 'account' && !userInfo) || !messages) return <UiLoader loading />
 
   return (
     <IntlProvider locale={locale} messages={messages} wrapRichTextChunksInFragment>

@@ -18,6 +18,14 @@
   @mixin input-text;
 }
 
+@define-mixin input-error-text {
+  margin-top: 8px;
+  margin-left: 0;
+  margin-right: 0;
+  font-size: 12px;
+  line-height: 16px;
+}
+
 @define-mixin label {
   margin-bottom: 8px;
   font-size: 12px;

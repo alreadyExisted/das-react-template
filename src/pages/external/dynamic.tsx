@@ -7,7 +7,7 @@ import styles from './styles.css'
 
 export default function ExternalPages() {
   return (
-    <Bootstrap localeNamespaces={['external']}>
+    <Bootstrap localeNamespaces={LOCALE_NAMESPACES}>
       <Container className={styles.layout}>
         <SwitchWrapper>
           <Route exact path="/" component={SignInPage} />
@@ -16,3 +16,5 @@ export default function ExternalPages() {
     </Bootstrap>
   )
 }
+
+const LOCALE_NAMESPACES = ['external']

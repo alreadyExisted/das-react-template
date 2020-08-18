@@ -1,11 +1,11 @@
 import { Suspense, lazy } from 'react'
-import { Loader } from '@app/components/ui/loader'
+import { UiLoader } from '@app/components/ui/loader'
 
 const DynamicExternalPages = lazy(() => import('./dynamic'))
 
 export function ExternalPages() {
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<UiLoader />}>
       <DynamicExternalPages />
     </Suspense>
   )

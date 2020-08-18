@@ -1,67 +1,59 @@
-import { ReactNode, useMemo } from 'react'
-import Select, { SelectProps } from '@material-ui/core/Select'
+import { useMemo } from 'react'
+import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import FormHelperText from '@material-ui/core/FormHelperText/FormHelperText'
 import { Label } from '@app/components/ui/fields/label'
 import cn from 'classnames'
 import styles from './styles.css'
-import { useFieldHandleChange } from '@app/hooks/forms/use-field-handle-change'
-
-export type SelectFieldsItems = {
-  value: string | number
-  name: ReactNode
-}[]
-
-interface Props {
-  items?: SelectFieldsItems
-  helperText?: ReactNode
-}
-
-export type SelectFieldProps = Props & SelectProps
+import { SelectFieldProps, SelectFieldItems } from '@app/components/ui/fields/selects/interfaces'
+import { useMergeTheme } from '@app/hooks/use-merge-theme'
 
 export function SelectField({
   items,
-  children,
   label,
   className,
   error,
   helperText,
   variant = 'outlined',
   inputProps,
-  value: fieldValue,
-  onChange,
+  theme,
+  hasPlaceholder,
+  renderItem = defaultRenderItem,
+  renderValue,
   ...props
 }: SelectFieldProps) {
-  const { value, handleChange } = useFieldHandleChange({ fieldValue, onChange })
+  const _theme = useMergeTheme(styles, theme)
   const _inputProps = useMemo(() => {
     return {
       ...inputProps,
-      className: cn(styles.input, props.displayEmpty && !value && styles.placeholder, inputProps?.className)
+      className: cn(_theme.input, hasPlaceholder && !props.value && styles.placeholder)
     }
-  }, [inputProps, props.displayEmpty, value])
-  const _children = useMemo(() => {
-    return items
-      ? items.map(item => (
-          <MenuItem
-            key={item.value}
-            value={item.value}
-            className={styles.item}
-            disabled={item.value === ''}
-            children={item.name}
-          />
-        ))
-      : children
-  }, [items, children])
+  }, [inputProps, hasPlaceholder, props.value, _theme.input])
+  const renderedItems = useMemo(() => {
+    return items.map(item => (
+      <MenuItem
+        key={item.value}
+        value={item.value}
+        className={_theme.item}
+        disabled={item.value === ''}
+        children={renderItem(item)}
+      />
+    ))
+  }, [items, renderItem, _theme.item])
   return (
     <>
       <Label>{label}</Label>
-      <FormControl fullWidth variant={variant} className={cn(styles.select, className)} error={error}>
-        <Select {...props} inputProps={_inputProps} value={value} onChange={handleChange}>
-          {_children}
+      <FormControl fullWidth variant={variant} className={_theme.select} error={error}>
+        <Select {...props} inputProps={_inputProps} displayEmpty={hasPlaceholder} renderValue={renderValue}>
+          {renderedItems}
         </Select>
         {error && <FormHelperText error={error}>{helperText}</FormHelperText>}
       </FormControl>
     </>
   )
+}
+
+function defaultRenderItem(item: SelectFieldItems[0]) {
+  return item.name
 }

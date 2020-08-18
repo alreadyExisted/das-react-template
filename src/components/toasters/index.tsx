@@ -1,6 +1,6 @@
 import { useShallowEqualSelector } from '@app/hooks/store/use-shallow-equal-selector'
-import { Toaster } from '@app/components/ui/toaster'
-import { Alert } from '@app/components/ui/alert'
+import { UiToaster } from '@app/components/ui/toaster'
+import { UiAlert } from '@app/components/ui/alert'
 import { useCallback, SyntheticEvent } from 'react'
 import { useDispatch } from 'react-redux'
 import { eventsActions } from '@app/state/modules/events'
@@ -15,18 +15,18 @@ export function Toasters() {
   const handleClose = useCallback(
     (id: string) => (_: SyntheticEvent, reason?: string) => {
       if (reason === 'clickaway') return
-      dispatch(eventsActions.removeEvent(id))
+      dispatch(eventsActions.remove(id))
     },
     [dispatch]
   )
   return (
     <>
       {events.map((item, index) => (
-        <Toaster key={index} open autoHideDuration={AUTO_HIDE_DURATION} onClose={handleClose(item.id)}>
-          <Alert onClose={handleClose(item.id)} severity={item.type}>
+        <UiToaster key={index} open autoHideDuration={AUTO_HIDE_DURATION} onClose={handleClose(item.id)}>
+          <UiAlert onClose={handleClose(item.id)} severity={item.type}>
             {stringify(item.message)}
-          </Alert>
-        </Toaster>
+          </UiAlert>
+        </UiToaster>
       ))}
     </>
   )

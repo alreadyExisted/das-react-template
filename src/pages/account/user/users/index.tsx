@@ -5,17 +5,19 @@ import { useT } from '@app/hooks/use-t'
 import { usersActions } from '@app/state/modules/users'
 import { usersSelector } from '@app/state/modules/users/selectors'
 import { useShallowEqualSelector } from '@app/hooks/store/use-shallow-equal-selector'
-import { Loader } from '@app/components/ui/loader'
+import { useLoadingState } from '@app/hooks/store/use-loading-state'
+import { UiLoader } from '@app/components/ui/loader'
 import { UiLink } from '@app/components/ui/link'
 import styles from './styles.css'
 
 export function UsersPage() {
   const t = useT('common.table')
   const dispatch = useDispatch()
-  const { loading, items } = useShallowEqualSelector(usersSelector)
+  const items = useShallowEqualSelector(usersSelector)
+  const loading = useLoadingState(usersActions.getItems)
 
   useEffect(() => {
-    dispatch(usersActions.getUsers())
+    dispatch(usersActions.getItems())
   }, [dispatch])
 
   const columns = useMemo<UiTableProps['columns']>(() => {
@@ -35,8 +37,8 @@ export function UsersPage() {
   }, [t, items])
 
   return (
-    <Loader loading={loading}>
+    <UiLoader loading={loading}>
       <UiTable columns={columns} />
-    </Loader>
+    </UiLoader>
   )
 }

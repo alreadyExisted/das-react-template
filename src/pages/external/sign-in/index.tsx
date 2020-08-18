@@ -8,22 +8,21 @@ import { UiButton } from '@app/components/ui/buttons/button'
 import { TextFormField } from '@app/components/ui/form/text-field'
 import { userActions } from '@app/state/modules/user'
 import { FormWrapper } from '@app/components/ui/form'
-import { Loader } from '@app/components/ui/loader'
-import { useShallowEqualSelector } from '@app/hooks/store/use-shallow-equal-selector'
+import { useLoadingState } from '@app/hooks/store/use-loading-state'
 import { SelectFormField } from '@app/components/ui/form/select-field'
-import { SelectFieldsItems } from '@app/components/ui/fields/selects/select'
+import { SelectFieldItems } from '@app/components/ui/fields/selects/interfaces'
 import styles from './styles.css'
 
 const NS = 'pages.sign-in'
 
 export function SignInPage() {
   const t = useT(NS)
-  const loading = useShallowEqualSelector(state => state.user.loading)
+  const loading = useLoadingState(userActions.login)
   const dispatch = useDispatch()
-  const roleItems = useMemo<SelectFieldsItems>(
+  const roleItems = useMemo<SelectFieldItems>(
     () => [
-      { name: t('role.user'), value: RoleType.User },
-      { name: t('role.admin'), value: RoleType.Admin }
+      { name: t('role.user') as string, value: RoleType.User },
+      { name: t('role.admin') as string, value: RoleType.Admin }
     ],
     [t]
   )
@@ -35,17 +34,20 @@ export function SignInPage() {
   )
   return (
     <UiCard className={styles.card}>
-      <Loader loading={loading}>
-        <h1 className={styles.title}>{t('title')}</h1>
-        <FormWrapper initialValues={formInitialValues} validationSchema={formValidationSchema} onSubmit={handleSubmit}>
-          <TextFormField label={t('email')} name="email" />
-          <TextFormField type="password" label={t('password')} name="password" />
-          <SelectFormField name="role" label={t('role')} items={roleItems} />
-          <div className={styles.submit}>
-            <UiButton type="submit">{t('submit')}</UiButton>
-          </div>
-        </FormWrapper>
-      </Loader>
+      <h1 className={styles.title}>{t('title')}</h1>
+      <FormWrapper
+        loading={loading}
+        initialValues={formInitialValues}
+        validationSchema={formValidationSchema}
+        onSubmit={handleSubmit}
+      >
+        <TextFormField label={t('email')} name="email" />
+        <TextFormField type="password" label={t('password')} name="password" />
+        <SelectFormField name="role" label={t('role')} items={roleItems} />
+        <div className={styles.submit}>
+          <UiButton type="submit">{t('submit')}</UiButton>
+        </div>
+      </FormWrapper>
     </UiCard>
   )
 }

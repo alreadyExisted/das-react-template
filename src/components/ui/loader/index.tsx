@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Spinner } from '@app/components/ui/spinner'
+import { UiSpinner } from '@app/components/ui/spinner'
 import cn from 'classnames'
 import styles from './styles.css'
 
@@ -10,7 +10,7 @@ interface Props {
   inline?: boolean
 }
 
-export function Loader({ loading, inline, children, className }: Props) {
+export function UiLoader({ loading, inline, children, className }: Props) {
   return (
     <div
       className={cn(styles.loader, className, {
@@ -21,7 +21,7 @@ export function Loader({ loading, inline, children, className }: Props) {
       <div className={styles.component}>{children}</div>
       {loading && (
         <div className={styles.spinner}>
-          <Spinner />
+          <UiSpinner />
         </div>
       )}
     </div>
